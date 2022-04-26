@@ -17,7 +17,7 @@ namespace PasswordValidatorSpecs
 
             var validationResult = passwordValidator.Validate(password);
 
-            Assert.IsTrue(validationResult.IsValid);
+            Assert.IsFalse(validationResult.IsValid);
             Assert.IsTrue(validationResult.ErrorMessage.Contains("Password must be at least 8 characters"));
         }
     }
