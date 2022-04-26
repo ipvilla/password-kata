@@ -26,7 +26,7 @@ namespace PasswordValidatorSpecs
     {
         public ValidationResult Validate(string password)
         {
-            throw new System.NotImplementedException();
+            return new ValidationResult(false, "Password must be at least 8 characters");
         }
     }
 
@@ -34,5 +34,11 @@ namespace PasswordValidatorSpecs
     {
         public bool IsValid { get; set; }
         public string ErrorMessage { get; set; }
+
+        public ValidationResult(bool isValid, string errorMessage)
+        {
+            IsValid = isValid;
+            ErrorMessage = errorMessage;
+        }
     }
 }
