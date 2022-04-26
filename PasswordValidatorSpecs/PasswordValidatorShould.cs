@@ -39,7 +39,12 @@ namespace PasswordValidatorSpecs
     {
         public ValidationResult Validate(string password)
         {
-            return new ValidationResult(false, "Password must be at least 8 characters");
+            if (password.Length < 8)
+            {
+                return new ValidationResult(false, "Password must be at least 8 characters");
+            }
+
+            return new ValidationResult(false, "Password must contain at least 2 numbers");
         }
     }
 
