@@ -4,16 +4,18 @@ namespace PasswordValidatorSpecs
 {
     public class Tests
     {
+        private PasswordValidator passwordValidator;
+
         [SetUp]
         public void Setup()
         {
+            passwordValidator = new PasswordValidator();
         }
 
         [Test]
         public void should_return_validation_error_when_password_is_shorter_than_8_characters()
         {
             var password = "a";
-            var passwordValidator = new PasswordValidator();
 
             var validationResult = passwordValidator.Validate(password);
 
