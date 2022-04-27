@@ -64,6 +64,10 @@ namespace PasswordValidatorSpecs
         public ValidationResult Validate(string password)
         {
             var errorMessages = new List<string>();
+            if (password.Equals(password.ToLower()))
+            {
+                errorMessages.Add("Password must contain at least one capital letter");
+            }
             if (password.Length < 8)
             {
                 errorMessages.Add("Password must be at least 8 characters");
