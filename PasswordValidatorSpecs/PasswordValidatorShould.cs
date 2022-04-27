@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System.Linq;
+using System.Text.RegularExpressions;
 using NUnit.Framework;
 
 namespace PasswordValidatorSpecs
@@ -75,6 +75,10 @@ namespace PasswordValidatorSpecs
         public ValidationResult Validate(string password)
         {
             var errorMessages = new List<string>();
+            if (password.IsAlphanumeric())
+            {
+                errorMessages.Add("Password must contain at least one special character");
+            }
             if (password.Equals(password.ToLower()))
             {
                 errorMessages.Add("Password must contain at least one capital letter");
@@ -98,6 +102,15 @@ namespace PasswordValidatorSpecs
         {
             IsValid = isValid;
             ErrorMessage = errorMessage;
+        }
+    }
+
+    public static class StringExtensions
+    {
+        public static bool IsAlphanumeric(this string text)
+        {
+            var regex = new Regex("^[a-zA-Z0-9 ]*$");
+            return regex.IsMatch(text);
         }
     }
 }
