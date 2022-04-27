@@ -57,6 +57,17 @@ namespace PasswordValidatorSpecs
             Assert.IsFalse(validationResult.IsValid);
             Assert.IsTrue(validationResult.ErrorMessage.Contains("Password must contain at least one capital letter"));
         }
+
+        [Test]
+        public void should_return_error_when_password_does_not_contain_any_special_character()
+        {
+            var password = "abci";
+
+            var validationResult = passwordValidator.Validate(password);
+
+            Assert.IsFalse(validationResult.IsValid);
+            Assert.IsTrue(validationResult.ErrorMessage.Contains("Password must contain at least one special character"));
+        }
     }
 
     public class PasswordValidator
