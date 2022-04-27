@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace PasswordValidatorSpecs
 {
-    public class Tests
+    public class PasswordValidatorShould
     {
         private PasswordValidator passwordValidator;
 
@@ -16,7 +16,7 @@ namespace PasswordValidatorSpecs
         }
 
         [Test]
-        public void should_return_validation_error_when_password_is_shorter_than_8_characters()
+        public void return_validation_error_when_password_is_shorter_than_8_characters()
         {
             var password = "a";
 
@@ -27,7 +27,7 @@ namespace PasswordValidatorSpecs
         }
 
         [Test]
-        public void should_return_validation_error_when_password_does_not_contain_at_least_2_numbers()
+        public void return_validation_error_when_password_does_not_contain_at_least_2_numbers()
         {
             var password = "abcdefghi";
 
@@ -38,7 +38,7 @@ namespace PasswordValidatorSpecs
         }
 
         [Test]
-        public void should_return_two_error_messages_when_password_is_shorter_than_8_characters_and_does_not_contain_at_least_2_numbers()
+        public void return_two_error_messages_when_password_is_shorter_than_8_characters_and_does_not_contain_at_least_2_numbers()
         {
             var password = "abci";
 
@@ -49,7 +49,7 @@ namespace PasswordValidatorSpecs
         }
 
         [Test]
-        public void should_return_error_when_password_does_not_contain_at_least_one_capital_letter()
+        public void return_error_when_password_does_not_contain_at_least_one_capital_letter()
         {
             var password = "abci";
 
@@ -60,7 +60,7 @@ namespace PasswordValidatorSpecs
         }
 
         [Test]
-        public void should_return_error_when_password_does_not_contain_any_special_character()
+        public void return_error_when_password_does_not_contain_any_special_character()
         {
             var password = "abci";
 
@@ -72,7 +72,7 @@ namespace PasswordValidatorSpecs
         }
 
         [Test]
-        public void should_return_ok_when_password_has_valid_format()
+        public void return_ok_when_password_has_valid_format()
         {
             var password = "ThisIsAValidPassword_13";
 
