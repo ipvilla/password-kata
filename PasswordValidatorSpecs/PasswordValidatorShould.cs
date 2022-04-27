@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using NUnit.Framework;
 
@@ -99,9 +100,14 @@ namespace PasswordValidatorSpecs
             {
                 errorMessages.Add("Password must be at least 8 characters");
             }
-            errorMessages.Add("Password must contain at least 2 numbers");
+            if (password.AsEnumerable().Count(char.IsDigit) < 2)
+            {
+                errorMessages.Add("Password must contain at least 2 numbers");
+            }
 
-            return new ValidationResult(false, string.Join('\n', errorMessages));
+            var isValid = !errorMessages.Any();
+
+            return new ValidationResult(isValid, string.Join('\n', errorMessages));
         }
     }
 
