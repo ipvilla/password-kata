@@ -66,7 +66,19 @@ namespace PasswordValidatorSpecs
             var validationResult = passwordValidator.Validate(password);
 
             Assert.IsFalse(validationResult.IsValid);
-            Assert.IsTrue(validationResult.ErrorMessage.Contains("Password must contain at least one special character"));
+            Assert.IsTrue(
+                validationResult.ErrorMessage.Contains("Password must contain at least one special character"));
+        }
+
+        [Test]
+        public void should_return_ok_when_password_has_valid_format()
+        {
+            var password = "ThisIsAValidPassword_13";
+
+            var validationResult = passwordValidator.Validate(password);
+
+            Assert.IsTrue(validationResult.IsValid);
+            Assert.AreEqual(string.Empty, validationResult.ErrorMessage);
         }
     }
 
