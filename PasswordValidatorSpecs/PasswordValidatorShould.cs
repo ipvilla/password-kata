@@ -92,7 +92,7 @@ namespace PasswordValidatorSpecs
             {
                 errorMessages.Add("Password must contain at least one special character");
             }
-            if (password.Equals(password.ToLower()))
+            if (password.HasNoCapitalLetters())
             {
                 errorMessages.Add("Password must contain at least one capital letter");
             }
@@ -129,6 +129,10 @@ namespace PasswordValidatorSpecs
         {
             var regex = new Regex("^[a-zA-Z0-9 ]*$");
             return regex.IsMatch(text);
+        }
+        public static bool HasNoCapitalLetters(this string text)
+        {
+            return text.Equals(text.ToLower());
         }
     }
 }
