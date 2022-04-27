@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework;
 
 namespace PasswordValidatorSpecs
@@ -50,12 +52,14 @@ namespace PasswordValidatorSpecs
     {
         public ValidationResult Validate(string password)
         {
+            var errorMessages = new List<string>();
             if (password.Length < 8)
             {
-                return new ValidationResult(false, "Password must be at least 8 characters");
+                errorMessages.Add("Password must be at least 8 characters");
             }
+            errorMessages.Add("Password must contain at least 2 numbers");
 
-            return new ValidationResult(false, "Password must contain at least 2 numbers");
+            return new ValidationResult(false, string.Join('\n', errorMessages));
         }
     }
 
