@@ -100,7 +100,7 @@ namespace PasswordValidatorSpecs
             {
                 errorMessages.Add("Password must be at least 8 characters");
             }
-            if (password.AsEnumerable().Count(char.IsDigit) < 2)
+            if (password.GetCountOfDigits() < 2)
             {
                 errorMessages.Add("Password must contain at least 2 numbers");
             }
@@ -130,9 +130,15 @@ namespace PasswordValidatorSpecs
             var regex = new Regex("^[a-zA-Z0-9 ]*$");
             return regex.IsMatch(text);
         }
+
         public static bool HasNoCapitalLetters(this string text)
         {
             return text.Equals(text.ToLower());
+        }
+
+        public static int GetCountOfDigits(this string text)
+        {
+            return text.AsEnumerable().Count(char.IsDigit);
         }
     }
 }
