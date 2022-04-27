@@ -33,6 +33,18 @@ namespace PasswordValidatorSpecs
             Assert.IsFalse(validationResult.IsValid);
             Assert.IsTrue(validationResult.ErrorMessage.Contains("Password must contain at least 2 numbers"));
         }
+
+        [Test]
+        public void should_return_two_error_messages_when_password_is_shorter_than_8_characters_and_does_not_contain_at_least_2_numbers()
+        {
+            var password = "abci";
+
+            var validationResult = passwordValidator.Validate(password);
+
+            Assert.IsFalse(validationResult.IsValid);
+            Assert.IsTrue(validationResult.ErrorMessage.Contains("Password must contain at least 2 numbers"));
+            Assert.IsTrue(validationResult.ErrorMessage.Contains("Password must be at least 8 characters"));
+        }
     }
 
     public class PasswordValidator
